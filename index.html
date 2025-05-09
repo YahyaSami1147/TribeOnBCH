@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRIBE - Creator Token for Bitcoin Cash</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: #e2e8f0;
+            line-height: 1.6;
+        }
+        .hero {
+            background: linear-gradient(135deg, #10b981, #059669);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(255,255,255,0.1), transparent);
+            opacity: 0.3;
+        }
+        .animated-button {
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: inline-block;
+            z-index: 1;
+        }
+        .animated-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.7);
+        }
+        .animated-button::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.4s ease, height 0.4s ease;
+        }
+        .animated-button:hover::after {
+            width: 200%;
+            height: 200%;
+        }
+        .animated-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: #1e293b;
+            border: 1px solid #334155;
+        }
+        .animated-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);
+        }
+        .animated-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .animated-link:hover {
+            color: #10b981;
+        }
+        .animated-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #10b981;
+            transition: width 0.3s ease;
+        }
+        .animated-link:hover::after {
+            width: 100%;
+        }
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        .hero-logo {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+            border: 2px solid #ffffff33;
+        }
+        .token-id {
+            word-break: break-all;
+        }
+        .mobile-menu {
+            transition: all 0.3s ease;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+        .mobile-menu.active {
+            max-height: 500px;
+            opacity: 1;
+        }
+        @media (max-width: 640px) {
+            .hero-logo {
+                width: 60px;
+                height: 60px;
+            }
+            .hero h2 {
+                font-size: 1.5rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .animated-button {
+                padding: 0.5rem 1rem;
+                font-size: 0.875rem;
+            }
+        }
+        @media (min-width: 641px) and (max-width: 768px) {
+            .hero-logo {
+                width: 70px;
+                height: 70px;
+            }
+            .hero h2 {
+                font-size: 2rem;
+            }
+        }
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="bg-gray-900 shadow sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <img src="Tribe.png" alt="TRIBE Logo" class="logo-img">
+                <h1 class="text-2xl font-bold text-emerald-400">TRIBE</h1>
+            </div>
+            <button id="menu-toggle" class="md:hidden text-emerald-400 focus:outline-none">
+                <svg id="menu-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+                <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+            <nav class="hidden md:flex flex-wrap gap-4">
+                <a href="#about" class="animated-link text-gray-300 hover:text-emerald-400">About</a>
+                <a href="#earn" class="animated-link text-gray-300 hover:text-emerald-400">Earn TRIBE</a>
+                <a href="#token" class="animated-link text-gray-300 hover:text-emerald-400">Token Info</a>
+                <a href="#media" class="animated-link text-gray-300 hover:text-emerald-400">Media</a>
+                <a href="#community" class="animated-link text-gray-300 hover:text-emerald-400">Community</a>
+            </nav>
+        </div>
+        <div id="mobile-menu" class="mobile-menu md:hidden bg-gray-800 px-4 py-2">
+            <nav class="flex flex-col gap-2">
+                <a href="#about" class="animated-link text-gray-300 hover:text-emerald-400 py-2">About</a>
+                <a href="#earn" class="animated-link text-gray-300 hover:text-emerald-400 py-2">Earn TRIBE</a>
+                <a href="#token" class="animated-link text-gray-300 hover:text-emerald-400 py-2">Token Info</a>
+                <a href="#media" class="animated-link text-gray-300 hover:text-emerald-400 py-2">Media</a>
+                <a href="#community" class="animated-link text-gray-300 hover:text-emerald-400 py-2">Community</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero text-white py-16 md:py-20 relative">
+        <div class="container mx-auto px-4 text-center">
+            <img src="Tribe.png" alt="TRIBE Hero Logo" class="hero-logo mx-auto">
+            <h2 class="text-3xl md:text-5xl font-bold mb-4">TRIBE – Creator Token for Bitcoin Cash</h2>
+            <p class="text-base md:text-xl mb-6 max-w-2xl mx-auto">Rewarding builders, artists, and storytellers who create on and for the BCH ecosystem.</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#" class="animated-button bg-emerald-500 text-white px-6 py-3 rounded-lg font-semibold">Snag TRIBE Early</a>
+                <a href="#" class="animated-button border border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-emerald-500 hover:border-transparent">Live TRIBE Market – Cauldron</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-gray-800">
+        <div class="container mx-auto px-4">
+            <h3 class="text-2xl md:text-3xl font-bold text-center mb-8 text-emerald-400">What Is TRIBE?</h3>
+            <p class="text-base md:text-lg text-center max-w-2xl mx-auto mb-6">TRIBE is a community-driven token built on Bitcoin Cash to reward those who build, share, and grow the BCH ecosystem through content and creativity. Whether you're making memes, threads, videos, tools, or tutorials — if you're pushing BCH forward, TRIBE is for you.</p>
+            <div class="grid md:grid-cols-2 gap-6 mt-8">
+                <div class="animated-card p-6 rounded-lg">
+                    <h4 class="text-lg md:text-xl font-semibold mb-4 text-emerald-300">Why TRIBE?</h4>
+                    <ul class="list-disc pl-6 space-y-2 text-sm md:text-base">
+                        <li>No middlemen — TRIBE rewards come from the community, for the community.</li>
+                        <li>BCH-friendly — TRIBE lives on the Bitcoin Cash chain: fast, cheap, and borderless.</li>
+                        <li>Contribution-based — Create value, help BCH grow, and earn TRIBE. Simple.</li>
+                        <li>Built for creators — We believe content is the front line of adoption.</li>
+                        <li>TRIBE = Recognition — Not for hype, but for impact.</li>
+                    </ul>
+                </div>
+                <div class="animated-card p-6 rounded-lg">
+                    <h4 class="text-lg md:text-xl font-semibold mb-4 text-emerald-300">Liquidity Fund</h4>
+                    <p class="text-sm md:text-base">To ensure trading and real use, 2,000 TRIBE (20%) is reserved for early supporters/investors who help provide BCH liquidity on Cauldron DEX. Drop your content in the Telegram, or tag us on X. If it contributes, it earns.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Earn TRIBE Section -->
+    <section id="earn" class="bg-gray-900 py-16">
+        <div class="container mx-auto px-4">
+            <h3 class="text-2xl md:text-3xl font-bold text-center mb-8 text-emerald-400">How to Earn TRIBE</h3>
+            <p class="text-base md:text-lg text-center max-w-2xl mx-auto mb-6">TRIBE rewards anyone adding value to the BCH community through content:</p>
+            <ul class="list-disc pl-6 max-w-md mx-auto mb-6 text-sm md:text-base">
+                <li>Memes that hit</li>
+                <li>Threads that teach</li>
+                <li>Videos that explain</li>
+                <li>Tools that help</li>
+                <li>Art that speaks</li>
+            </ul>
+            <p class="text-center mb-6 text-sm md:text-base">Every week, 100 TRIBE will be distributed to those helping BCH thrive.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                <div class="animated-card p-6 rounded-lg">
+                    <h4 class="text-lg md:text-xl font-semibold mb-2 text-emerald-300">Content Creators</h4>
+                    <p class="text-sm md:text-base">70 TRIBE weekly for memes, videos, articles, threads.</p>
+                </div>
+                <div class="animated-card p-6 rounded-lg">
+                    <h4 class="text-lg md:text-xl font-semibold mb-2 text-emerald-300">Bounties & Challenges</h4>
+                    <p class="text-sm md:text-base">20 TRIBE weekly for dev tools, designs, campaigns.</p>
+                </div>
+                <div class="animated-card p-6 rounded-lg">
+                    <h4 class="text-lg md:text-xl font-semibold mb-2 text-emerald-300">Reserve Fund</h4>
+                    <p class="text-sm md:text-base">10 TRIBE weekly for collabs, emergencies, extra boosts.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Token Info Section -->
+    <section id="token" class="py-16 bg-gray-800">
+        <div class="container mx-auto px-4">
+            <h3 class="text-2xl md:text-3xl font-bold text-center mb-8 text-emerald-400">Token Info (TRIBE)</h3>
+            <div class="max-w-2xl mx-auto animated-card p-6 rounded-lg">
+                <ul class="space-y-2 text-sm md:text-base">
+                    <li><strong>Name:</strong> TRIBE</li>
+                    <li><strong>Ticker:</strong> TRIBE</li>
+                    <li><strong>Chain:</strong> Bitcoin Cash</li>
+                    <li><strong>Token Type:</strong> CashTokens</li>
+                    <li><strong>Token ID:</strong> <span class="token-id">148c678c99c8617a9aae675c2ab88d8de7baf794722c289d9116dae8e765b557</span></li>
+                    <li><strong>Supply:</strong> 10,000 tokens</li>
+                    <li><strong>Purpose:</strong> Reward creators, amplify Bitcoin Cash</li>
+                    <li><strong>Verify:</strong> 
+                        <a href="#" class="animated-link text-emerald-400 hover:text-emerald-600">Token Explorer</a>, 
+                        <a href="#" class="animated-link text-emerald-400 hover:text-emerald-600">Salem Kode Explorer</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Media Section -->
+    <section id="media" class="bg-gray-900 py-16">
+        <div class="container mx-auto px-4">
+            <h3 class="text-2xl md:text-3xl font-bold text-center mb-8 text-emerald-400">Media & Press Coverage</h3>
+            <p class="text-base md:text-lg text-center max-w-2xl mx-auto mb-6">Discover where TRIBE has been featured across platforms.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="animated-card p-6 rounded-lg">
+                    <h4 class="text-lg md:text-xl font-semibold mb-2 text-emerald-300">Read.cash Article</h4>
+                    <p><a href="#" class="animated-link text-emerald-400 hover:text-emerald-600 text-sm md:text-base">Introducing TRIBE on Read.cash</a></p>
+                </div>
+                <div class="animated-card p-6 rounded-lg">
+                    <h4 class="text-lg md:text-xl font-semibold mb-2 text-emerald-300">Publish0x Blog</h4>
+                    <p><a href="#" class="animated-link text-emerald-400 hover:text-emerald-600 text-sm md:text-base">TRIBE on Publish0x</a></p>
+                </div>
+                <div class="animated-card p-6 rounded-lg">
+                    <h4 class="text-lg md:text-xl font-semibold mb-2 text-emerald-300">Wubits Post</h4>
+                    <p><a href="#" class="animated-link text-emerald-400 hover:text-emerald-600 text-sm md:text-base">TRIBE Post on Wubits</a></p>
+                </div>
+                <div class="animated-card p-6 rounded-lg">
+                    <h4 class="text-lg md:text-xl font-semibold mb-2 text-emerald-300">Bastyon</h4>
+                    <p><a href="#" class="animated-link text-emerald-400 hover:text-emerald-600 text-sm md:text-base">TRIBE on Bastyon</a></p>
+                </div>
+                <div class="animated-card p-6 rounded-lg">
+                    <h4 class="text-lg md:text-xl font-semibold mb-2 text-emerald-300">GrillApp</h4>
+                    <p><a href="#" class="animated-link text-emerald-400 hover:text-emerald-600 text-sm md:text-base">TRIBE Post on GrillApp</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section id="community" class="py-16 bg-gray-800">
+        <div class="container mx-auto px-4 text-center">
+            <h3 class="text-2xl md:text-3xl font-bold mb-8 text-emerald-400">Community & Links</h3>
+            <div class="flex flex-wrap justify-center gap-6">
+                <a href="#" class="animated-link text-emerald-400 hover:text-emerald-600 text-base md:text-lg">Telegram</a>
+                <a href="#" class="animated-link text-emerald-400 hover:text-emerald-600 text-base md:text-lg">X</a>
+                <a href="#" class="animated-link text-emerald-400 hover:text-emerald-600 text-base md:text-lg">BCH Guide for New Users By Minisatoshi</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-6">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-sm md:text-base">© 2025 TRIBE is powered by creators. No VC. No hype machine. Just people who believe in Bitcoin Cash and want to see it grow.</p>
+        </div>
+    </footer>
+
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const closeIcon = document.getElementById('close-icon');
+
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            menuIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking a link
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                menuIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
